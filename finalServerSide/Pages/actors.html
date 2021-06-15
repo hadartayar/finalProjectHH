@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+    </script>
+    <script src="../Scripts/ajaxCalls.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="myStyle.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../Scripts/navbarFunc.js"></script>
+
+    <script>
+        //https://api.themoviedb.org/3/tv/{tv_id}/season/{season_number}?api_key=<<api_key>>&language=en-US
+
+        $(document).ready(function () {
+            $("#getTV").click(getTV);
+
+            key = "90f77ef6862d870eb9f5fff3bc587100";
+
+            url = "https://api.themoviedb.org/";
+            imagePath = "https://image.tmdb.org/t/p/w500/";
+            // 64467
+            // 1416
+
+            //https://api.themoviedb.org/3/tv/1416/season/0/episode/64467?api_key=1c107f2bd2f3fc2aee24aa4f2f8d8647&language=en-US
+            //AIzaSyBAFQpdpUo7xpd6xQKspMv7Ci-Ex5xmbDg
+            navBarVisability();
+        });
+
+        ///tv/{tv_id}/credits
+        ///tv/{tv_id}/season/{season_number}
+
+        function getCredits() {
+            //i = 1;
+            $("#ph").html("");
+            //$("#episodeList").html("");
+            tv_id = 1416;
+            //let name = $("#tvShowName").val();
+            let method = "3/search/tv?";
+            let api_key = "api_key=" + key;
+            let moreParams = "&language=en-US&page=1&include_adult=false&";
+            let query = "query=" + encodeURIComponent(tv_id);
+            let apiCall = url + method + api_key + moreParams + query;
+            ajaxCall("GET", apiCall, "", getTVSuccessCB, getTVErrorCB);
+        }
+
+        function getTVSuccessCB() {
+
+        }
+
+        function getTVErrorCB() {
+
+        }
+
+    </script>
+</head>
+<body>
+    <div id="ph"></div>
+</body>
+</html>
